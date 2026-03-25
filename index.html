@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FarmAgent · CRT Inventory Automation</title>
+<meta name="description" content="FarmAgent — AI-powered CRT and NOM-006-SCFI-2012 compliant agave inventory automation.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;600;700&family=Work+Sans:wght@300;400;600&display=swap');
+:root{--void:#080E14;--surface:#0D1A26;--raised:#132233;--border:#1E3347;--blue:#006EA7;--blue-b:#0A8FD4;--green:#A4CA67;--green-d:#6E9944;--gold:#D2A844;--tp:#EAF2F8;--ts:#A8BDD0;--tm:#4A6278;--red:#D25444;--amber:#D2A844;--ftitle:'Raleway',sans-serif;--fbody:'Work Sans',sans-serif;}
+.reveal{background:var(--void);}
+.reveal .slides{font-family:var(--fbody);color:var(--tp);}
+.reveal .slides section{height:100%;box-sizing:border-box;}
+.slide-inner{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:52px 68px 68px;box-sizing:border-box;position:relative;overflow:hidden;}
+.glow-orb::before{content:'';position:absolute;top:-60px;right:-60px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,110,167,.18) 0%,transparent 65%);pointer-events:none;}
+.cover-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+.cover-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(8,14,20,.88) 38%,rgba(0,110,167,.24) 100%);}
+.cover-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;height:100%;padding:52px 68px;box-sizing:border-box;}
+.cover-tag{font-family:var(--ftitle);font-weight:300;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:24px;}
+.cover-headline{font-family:var(--ftitle);font-weight:200;font-size:60px;line-height:1.18;color:var(--tp);margin:0 0 8px;}
+.cover-rule{width:70px;height:2px;background:var(--green);margin:18px 0 22px;}
+.cover-sub{font-family:var(--fbody);font-size:17px;color:var(--ts);max-width:580px;line-height:1.65;}
+.cover-footer{position:absolute;bottom:32px;left:68px;right:68px;display:flex;justify-content:space-between;align-items:center;z-index:2;}
+.cover-footer-logo{font-family:var(--ftitle);font-weight:700;font-size:17px;color:var(--blue-b);letter-spacing:.06em;}
+.cover-footer-conf{font-family:var(--fbody);font-size:12px;color:var(--tm);}
+.two-col{display:grid;grid-template-columns:55% 45%;gap:44px;height:100%;align-items:center;}
+.col-visual img{width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:0 0 40px rgba(0,110,167,.22);}
+.slide-tag{display:inline-block;font-family:var(--fbody);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green);background:var(--surface);border:1px solid var(--blue);padding:5px 13px;border-radius:999px;margin-bottom:14px;}
+.slide-h1{font-family:var(--ftitle);font-weight:700;font-size:32px;color:var(--tp);line-height:1.25;margin:0 0 10px;}
+.slide-rule{width:56px;height:2px;background:var(--gold);margin-bottom:18px;}
+.slide-body{font-family:var(--fbody);font-size:15px;color:var(--ts);line-height:1.65;}
+.slide-body p{margin:0 0 10px;}.slide-body strong{color:var(--tp);}.slide-body em{color:var(--green);font-style:normal;}
+.bullet-list{list-style:none;margin:10px 0;padding:0;}
+.bullet-list li{padding:5px 0 5px 20px;position:relative;font-size:14px;color:var(--ts);line-height:1.5;}
+.bullet-list li::before{content:"■";position:absolute;left:0;color:var(--green);font-size:8px;top:9px;}
+.bullet-list li strong{color:var(--tp);}
+.callout{border-left:3px solid var(--gold);padding:12px 16px;background:var(--surface);border-radius:0 8px 8px 0;margin-top:14px;font-size:14px;color:var(--ts);line-height:1.6;}
+.callout strong{color:var(--gold);}
+.callout-red{border-left:3px solid var(--red);padding:12px 16px;background:var(--surface);border-radius:0 8px 8px 0;margin-top:14px;font-size:14px;color:var(--ts);line-height:1.6;}
+.callout-red strong{color:var(--red);}
+/* plant classification table */
+.plant-table{width:100%;border-collapse:collapse;margin-top:14px;font-family:var(--fbody);font-size:13px;}
+.plant-table th{background:var(--raised);color:var(--blue-b);font-weight:600;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.plant-table td{padding:8px 12px;border-bottom:1px solid rgba(30,51,71,.6);color:var(--ts);vertical-align:middle;}
+.plant-table td:first-child{color:var(--tp);font-weight:600;}
+.plant-table tr:last-child td{border-bottom:none;}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+.dot-green{background:#A4CA67;}.dot-blue{background:#0A8FD4;}.dot-pink{background:#E8809A;}.dot-yellow{background:#D2A844;}.dot-red{background:#D25444;}
+/* stats row */
+.stats-row{display:flex;gap:14px;margin-top:16px;}
+.stat-card{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 12px;text-align:center;}
+.stat-num{font-family:var(--ftitle);font-weight:700;font-size:26px;margin-bottom:4px;}
+.stat-lbl{font-family:var(--fbody);font-size:11px;color:var(--ts);line-height:1.3;}
+.stat-green .stat-num{color:var(--green);}.stat-blue .stat-num{color:var(--blue-b);}.stat-pink .stat-num{color:#E8809A;}.stat-amber .stat-num{color:var(--amber);}.stat-red .stat-num{color:var(--red);}
+/* capability table */
+.cap-table{width:100%;border-collapse:collapse;margin-top:16px;font-family:var(--fbody);font-size:13px;}
+.cap-table th{background:var(--raised);color:var(--blue-b);font-weight:600;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.cap-table td{padding:8px 12px;border-bottom:1px solid rgba(30,51,71,.6);color:var(--ts);vertical-align:top;}
+.cap-table td:first-child{color:var(--tp);font-weight:600;}
+.cap-table tr:last-child td{border-bottom:none;}
+/* slide footer */
+.slide-footer{position:absolute;bottom:18px;left:68px;right:68px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--tm);border-top:1px solid var(--border);padding-top:8px;}
+.slide-footer-logo{font-family:var(--ftitle);font-weight:700;font-size:12px;color:var(--blue-b);}
+/* lang badge */
+#lang-badge{position:fixed;top:14px;right:14px;z-index:9999;background:rgba(13,26,38,.92);border:1px solid var(--border);border-radius:999px;padding:6px 14px;display:flex;gap:8px;align-items:center;font-family:var(--ftitle);font-size:13px;font-weight:600;letter-spacing:.08em;backdrop-filter:blur(8px);}
+#lang-badge a{text-decoration:none;padding:2px 6px;border-radius:4px;transition:all .2s;}
+#lang-badge .active{color:var(--green);background:rgba(164,202,103,.14);}
+#lang-badge .inactive{color:var(--tm);}
+#lang-badge .sep{color:var(--border);}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{all:unset;display:block;font-family:var(--ftitle);text-transform:none;}
+.reveal .progress{background:rgba(0,110,167,.2);}.reveal .progress span{background:var(--green);}
+.reveal .controls button{color:var(--blue);}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px;}
+.img-card img{width:100%;border-radius:10px;border:1px solid var(--border);}
+.img-card-label{font-family:var(--fbody);font-size:11px;color:var(--tm);text-align:center;margin-top:6px;letter-spacing:.06em;}
+.gap-row{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:12px;}
+.gap-icon{font-size:28px;flex-shrink:0;}
+.gap-txt{font-family:var(--fbody);font-size:13px;color:var(--ts);line-height:1.5;}
+.gap-txt strong{color:var(--tp);}
+</style>
+</head>
+<body>
+<div id="lang-badge"><a href="index.html" class="active">EN</a><span class="sep">|</span><a href="es/index.html" class="inactive">ES</a></div>
+<div class="reveal">
+  <div class="slides">
+
+<!-- SLIDE 1: COVER -->
+<section>
+<div style="position:relative;width:100%;height:100%;">
+  <div class="cover-bg" style="background-image:url('assets/cover.png')"></div>
+  <div class="cover-content">
+    <div class="cover-tag">FarmAgent · Agave Edition &nbsp;·&nbsp; CRT Compliance</div>
+    <div class="cover-headline">Inventory<br>Automation<br><em style="color:var(--green);font-style:normal;">for the CRT.</em></div>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">How FarmAgent closes every gap in the NOM-006-SCFI-2012 traceability chain — from hijuelo registration to field passport verification — with verified AI, not paper estimates.</p>
+  </div>
+  <div class="cover-footer">
+    <span class="cover-footer-logo">FarmAgent</span>
+    <span class="cover-footer-conf">FruitScout · Confidential · For CRT Review</span>
+  </div>
+</div></section>
+
+<!-- SLIDE 2: THE COMPLIANCE GAP -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">The Problem</div>
+      <div class="slide-h1">A 7-Year Gap Between the Paper Ledger and the Field.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p>The CRT's inventory framework demands a closed traceability chain from planting to passport. Today, that chain is built on estimation.</p>
+        <ul class="bullet-list">
+          <li><strong>Year 0 Registration</strong> — Growers estimate hijuelo count by row. Errors compound for 7 years.</li>
+          <li><strong>Annual Updates (Jan–Jul)</strong> — Scouts walk a sample path and extrapolate. CRT accepts the self-report.</li>
+          <li><strong>Year 6–7 Harvest</strong> — If SIGA balance diverges from field reality, passports are denied on mature piñas worth <strong>$1,500–$3,500/ton</strong>.</li>
+          <li><strong>Inspector Arrival</strong> — Paper files, disconnected records, no photo proof.</li>
+        </ul>
+        <div class="callout-red"><strong>The core risk:</strong> A grower who loses 5% of Year 1 plants and doesn't detect it will arrive at harvest 7 years later with a SIGA shortfall they cannot explain — and mature agave they cannot sell.</div>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/map1_field.jpg" alt="Agave field orthomosaic"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 2 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 3: ADVANCED VISUAL INVENTORY - THE CONCEPT -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">Core Differentiator · Advanced Visual Inventory</div>
+      <div class="slide-h1">One Drone Flight. Every Plant. Classified.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p>FruitScout is the only platform that can look at an agave field from a drone and tell you — plant by plant — exactly what you have.</p>
+        <table class="plant-table">
+          <tr><th>Class</th><th>What It Means</th></tr>
+          <tr><td><span class="dot dot-green"></span>Viable</td><td>Mature, healthy plant — counts toward CRT passport balance</td></tr>
+          <tr><td><span class="dot dot-blue"></span>Hijuelo</td><td>Offshoot / pup — registered as a future CRT asset</td></tr>
+          <tr><td><span class="dot dot-pink"></span>Small</td><td>Sub-mature — growing, not yet in pheromone season</td></tr>
+          <tr><td><span class="dot dot-yellow"></span>Diseased</td><td>Symptomatic — flagged for phytosanitary follow-up</td></tr>
+          <tr><td><span class="dot dot-red"></span>Missing</td><td>Expected position, no plant — attrition gap, replanting trigger</td></tr>
+        </table>
+        <div class="callout" style="margin-top:10px;">No competitor can simultaneously count Viable piñas, register hijuelos as CRT assets, flag disease, and <strong>geo-locate every missing plant</strong> — in one flight.</div>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/map2_classified.jpg" alt="Full field plant classification"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 3 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 4: THE FIELD EVIDENCE -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="slide-tag">Live Platform Evidence · Field 5345</div>
+  <div class="slide-h1">Real Field. Real Data. 12,869 Plants Classified in One Flight.</div>
+  <div class="slide-rule"></div>
+  <div class="stats-row">
+    <div class="stat-card stat-green"><div class="stat-num">9,156</div><div class="stat-lbl">Viable<br>Piñas</div></div>
+    <div class="stat-card stat-blue"><div class="stat-num">2,378</div><div class="stat-lbl">Hijuelo<br>(CRT Asset)</div></div>
+    <div class="stat-card stat-pink"><div class="stat-num">643</div><div class="stat-lbl">Small<br>Plants</div></div>
+    <div class="stat-card stat-amber"><div class="stat-num">409</div><div class="stat-lbl">Diseased<br>Flagged</div></div>
+    <div class="stat-card stat-red"><div class="stat-num">286</div><div class="stat-lbl">Missing<br>Gaps</div></div>
+  </div>
+  <div class="three-col" style="margin-top:18px;">
+    <div class="img-card"><img src="assets/map1_field.jpg" alt="Clean orthomosaic"><div class="img-card-label">01 · Clean Orthomosaic</div></div>
+    <div class="img-card"><img src="assets/map2_classified.jpg" alt="All plants classified"><div class="img-card-label">02 · All 12,869 Plants Classified</div></div>
+    <div class="img-card"><img src="assets/map3_closeup.jpg" alt="Plant-level closeup"><div class="img-card-label">03 · Plant-Level Detection</div></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 4 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 5: REGISTRATION + ANNUAL UPDATE -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">Stage 1 &amp; 2 · Registration &amp; Annual CRT Update</div>
+      <div class="slide-h1">Verified Counts Replace Estimated Self-Reports.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">Year 0 — Registro de Predios</p>
+        <ul class="bullet-list">
+          <li>Drone generates <strong>CRT-grade GPS polygon</strong> (±30cm accuracy) automatically</li>
+          <li>Visual Inventory counts and classifies <strong>every hijuelo</strong> at planting — not estimated by row</li>
+          <li>Auto-generated Registro PDF with GPS KML, plant count by class, and photo proof</li>
+        </ul>
+        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">Years 1–6 — Annual SIGA Update (Jan–Jul Window)</p>
+        <ul class="bullet-list">
+          <li><strong>Mortality Bleed Rate</strong> — exact % lost since prior year, by class (Diseased vs. Missing)</li>
+          <li>Hijuelos that matured to Viable are <strong>auto-promoted</strong> in the CRT record</li>
+          <li>Attrition attributed to phytosanitary cause — defensible explanation for every lost plant</li>
+          <li>SIGA-ready annual report auto-generated; no manual re-entry</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/sivea_portal.jpg" alt="SIGA inspector portal" onerror="this.src='assets/sivea_portal.png'"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 5 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 6: REPLANTING MANAGEMENT -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">Stage 2b · Replanting Management (Resiembra)</div>
+      <div class="slide-h1">Every Red Dot is a GPS Waypoint for the Replanting Crew.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p>The Visual Inventory doesn't just report gaps — it triggers action.</p>
+        <div class="gap-row">
+          <div class="gap-icon">📅</div>
+          <div class="gap-txt"><strong>Year 1–2 gap = recoverable.</strong> A replacement hijuelo planted now matures with the cohort and is registered to the SIGA balance.</div>
+        </div>
+        <div class="gap-row" style="border-color:var(--red);">
+          <div class="gap-icon">🚫</div>
+          <div class="gap-txt"><strong>Year 4–5 gap = permanent SIGA shortfall.</strong> Replacement won't mature in time. Passports denied at harvest.</div>
+        </div>
+        <ul class="bullet-list" style="margin-top:12px;">
+          <li><strong>GPS Gap Map</strong> — 🔴 Missing dots converted to replanting waypoints. Crew navigated to exact row and position.</li>
+          <li><strong>Auto-trigger at &gt;3% density</strong> (blocks ≤ Year 2) — replanting work order fires without manual decision</li>
+          <li><strong>Year window alert</strong> — flags when replanting is too late for the cohort; triggers SIGA amendment instead</li>
+          <li><strong>60-day survival tracking</strong> + SIGA balance update on success</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/gps_map.jpg" alt="GPS gap map" onerror="this.src='assets/gps_map.png'"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 6 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 7: CRT VERIFICATION + PASSPORT PREP -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">Stages 3–5 · Inspector Readiness &amp; Harvest Passport</div>
+      <div class="slide-h1">Zero-Stress Inspector Arrival. Zero Passport Surprises.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">CRT Inspector Arrives — Unannounced</p>
+        <ul class="bullet-list">
+          <li><strong>Live SIGA export</strong> — inspector-ready PDF in one tap: YOLO count, phytosanitary logs, GPS polygon, drone imagery</li>
+          <li><strong>Read-only inspector portal</strong> — shared as a link; full year of data on their tablet, no paper</li>
+          <li><strong>Discrepancy alert</strong> — 60 days before annual window if declared count vs. YOLO count diverge &gt;3%</li>
+        </ul>
+        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">Year 5–6 — Harvest Readiness</p>
+        <ul class="bullet-list">
+          <li><strong>Maturity scan</strong> — NDVI + plant size to identify peak-ripeness blocks</li>
+          <li><strong>Passport Volume Estimator</strong> — YOLO count of harvestable plants cross-checked vs. SIGA balance</li>
+          <li><strong>Pre-harvest shortfall alert</strong> — flags if tonnage estimate exceeds SIGA balance before season starts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/sivea_portal.png" alt="Inspector portal"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 7 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 8: FIELD GATE VERIFICATION -->
+<section>
+<div class="slide-inner glow-orb">
+  <div class="two-col">
+    <div class="col-text">
+      <div class="slide-tag">Stage 6 · Field Passport Verification (Gate / Loadout)</div>
+      <div class="slide-h1">Replacing WhatsApp with a Structured Chain of Custody.</div>
+      <div class="slide-rule"></div>
+      <div class="slide-body">
+        <p>Today: three photos sent via WhatsApp to HQ. Image buried in chat. No machine-readable record. No cross-check against the CRT folio.</p>
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">FarmAgent Mobile Capture Flow</p>
+        <ul class="bullet-list">
+          <li><strong>License Plate OCR</strong> — plate extracted and cross-checked against authorized carrier list. Pass/Fail in real time.</li>
+          <li><strong>Seal / Lock CV</strong> — seal presence verified, tampering checked, seal number extracted via OCR.</li>
+          <li><strong>Guía de Traslado OCR</strong> — Folio Number, polygon ID, tonnage, and distillery destination extracted and auto-validated against CRT record.</li>
+          <li><strong>Structured digital record</strong> — timestamped, GPS-tagged, push notification to HQ with pass/fail summary.</li>
+        </ul>
+        <div class="callout"><strong>CRT significance:</strong> Every Guía has a unique folio consumed from the SIGA balance. FarmAgent makes an unmatched truck departure impossible to miss.</div>
+      </div>
+    </div>
+    <div class="col-visual"><img src="assets/map2_classified.jpg" alt="Field data"></div>
+  </div>
+  <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 8 / 9</span></div>
+</div></section>
+
+<!-- SLIDE 9: CLOSING -->
+<section>
+<div style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;">
+  <div class="cover-bg" style="background-image:url('assets/closing.png')"></div>
+  <div style="position:absolute;inset:0;background:rgba(8,14,20,.80);"></div>
+  <div style="position:relative;z-index:2;padding:48px;max-width:760px;">
+    <div style="font-family:var(--ftitle);font-weight:200;font-size:52px;color:var(--tp);line-height:1.25;margin-bottom:18px;">
+      The chain is verified,<br>defensible, and <em style="color:var(--green);font-style:normal;">unbroken.</em>
+    </div>
+    <div class="cover-rule" style="margin:0 auto 24px;"></div>
+    <p style="font-family:var(--fbody);font-size:16px;color:var(--ts);line-height:1.7;max-width:580px;margin:0 auto;">
+      Every agave grower in the Tequila DOT is legally required to track their plants from the day they go in the ground to the day they leave in a distillery truck. Most do it on paper and hope the inspector agrees.<br><br>
+      <strong style="color:var(--tp);">FarmAgent makes the CRT's own database agree with your field — permanently.</strong>
+    </p>
+    <div style="margin-top:32px;font-family:var(--ftitle);font-weight:700;font-size:17px;color:var(--blue-b);">FarmAgent · FruitScout</div>
+  </div>
+</div></section>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true, transition: 'fade', transitionSpeed: 'default',
+  backgroundTransition: 'fade', progress: true, controls: true,
+  slideNumber: false, center: false, disableLayout: true, margin: 0,
+});
+</script>
+</body>
+</html>
