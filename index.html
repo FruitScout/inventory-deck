@@ -81,6 +81,12 @@
 </style>
 </head>
 <body>
+<div id="lang-badge">
+  <a href="#" id="btn-en" class="active" onclick="setLang('en');return false;">EN</a>
+  <span class="sep">|</span>
+  <a href="#" id="btn-es" class="inactive" onclick="setLang('es');return false;">ES</a>
+</div>
+
 <div class="reveal">
   <div class="slides">
 
@@ -89,14 +95,14 @@
 <div style="position:relative;width:100%;height:100%;">
   <div class="cover-bg" style="background-image:url('assets/cover.png')"></div>
   <div class="cover-content">
-    <div class="cover-tag">FarmAgent · Agave Edition &nbsp;·&nbsp; CRT Compliance</div>
-    <div class="cover-headline">Inventory<br>Automation<br><em style="color:var(--green);font-style:normal;">for the CRT.</em></div>
+    <div class="cover-tag" data-i18n="hero-tag">FarmAgent · Agave Edition &nbsp;·&nbsp; CRT Compliance</div>
+    <div class="cover-headline" data-i18n="hero-h1">Inventory<br>Automation<br><em style="color:var(--green);font-style:normal;">for the CRT.</em></div>
     <div class="cover-rule"></div>
-    <p class="cover-sub">How FarmAgent closes every gap in the NOM-006-SCFI-2012 traceability chain — from hijuelo registration to field passport verification — with verified AI, not paper estimates.</p>
+    <p class="cover-sub" data-i18n="hero-sub">How FarmAgent closes every gap in the NOM-006-SCFI-2012 traceability chain — from hijuelo registration to field passport verification — with verified AI, not paper estimates.</p>
   </div>
   <div class="cover-footer">
     <span class="cover-footer-logo">FarmAgent</span>
-    <span class="cover-footer-conf">FruitScout · Confidential · For CRT Review</span>
+    <span class="cover-footer-conf" data-i18n="footer-conf">FruitScout · Confidential · For CRT Review</span>
   </div>
 </div></section>
 
@@ -105,18 +111,18 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">The Problem</div>
-      <div class="slide-h1">A 7-Year Gap Between the Paper Ledger and the Field.</div>
+      <div class="slide-tag" data-i18n="s2-tag">The Problem</div>
+      <div class="slide-h1" data-i18n="s2-h1">A 7-Year Gap Between the Paper Ledger and the Field.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p>The CRT's inventory framework demands a closed traceability chain from planting to passport. Today, that chain is built on estimation.</p>
+        <p data-i18n="s2-p1">The CRT's inventory framework demands a closed traceability chain from planting to passport. Today, that chain is built on estimation.</p>
         <ul class="bullet-list">
-          <li><strong>Year 0 Registration</strong> — Growers estimate hijuelo count by row. Errors compound for 7 years.</li>
-          <li><strong>Annual Updates (Jan–Jul)</strong> — Scouts walk a sample path and extrapolate. CRT accepts the self-report.</li>
-          <li><strong>Year 6–7 Harvest</strong> — If SIGA balance diverges from field reality, passports are denied on mature piñas worth <strong>$1,500–$3,500/ton</strong>.</li>
-          <li><strong>Inspector Arrival</strong> — Paper files, disconnected records, no photo proof.</li>
+          <li data-i18n="s2-li1"><strong>Year 0 Registration</strong> — Growers estimate hijuelo count by row. Errors compound for 7 years.</li>
+          <li data-i18n="s2-li2"><strong>Annual Updates (Jan–Jul)</strong> — Scouts walk a sample path and extrapolate. CRT accepts the self-report.</li>
+          <li data-i18n="s2-li3"><strong>Year 6–7 Harvest</strong> — If SIGA balance diverges from field reality, passports are denied on mature piñas worth <strong>$1,500–$3,500/ton</strong>.</li>
+          <li data-i18n="s2-li4"><strong>Inspector Arrival</strong> — Paper files, disconnected records, no photo proof.</li>
         </ul>
-        <div class="callout-red"><strong>The core risk:</strong> A grower who loses 5% of Year 1 plants and doesn't detect it will arrive at harvest 7 years later with a SIGA shortfall they cannot explain — and mature agave they cannot sell.</div>
+        <div class="callout-red" data-i18n="s2-callout"><strong>The core risk:</strong> A grower who loses 5% of Year 1 plants and doesn't detect it will arrive at harvest 7 years later with a SIGA shortfall they cannot explain — and mature agave they cannot sell.</div>
       </div>
     </div>
     <div class="col-visual"><img src="assets/map1_field.jpg" alt="Agave field orthomosaic"></div>
@@ -129,20 +135,20 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">Core Differentiator · Advanced Visual Inventory</div>
-      <div class="slide-h1">One Drone Flight. Every Plant. Classified.</div>
+      <div class="slide-tag" data-i18n="s3-tag">Core Differentiator · Advanced Visual Inventory</div>
+      <div class="slide-h1" data-i18n="s3-h1">One Drone Flight. Every Plant. Classified.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p>FruitScout is the only platform that can look at an agave field from a drone and tell you — plant by plant — exactly what you have.</p>
+        <p data-i18n="s3-p1">FruitScout is the only platform that can look at an agave field from a drone and tell you — plant by plant — exactly what you have.</p>
         <table class="plant-table">
-          <tr><th>Class</th><th>What It Means</th></tr>
-          <tr><td><span class="dot dot-green"></span>Viable</td><td>Mature, healthy plant — counts toward CRT passport balance</td></tr>
-          <tr><td><span class="dot dot-blue"></span>Hijuelo</td><td>Offshoot / pup — registered as a future CRT asset</td></tr>
-          <tr><td><span class="dot dot-pink"></span>Small</td><td>Sub-mature — growing, not yet in pheromone season</td></tr>
-          <tr><td><span class="dot dot-yellow"></span>Diseased</td><td>Symptomatic — flagged for phytosanitary follow-up</td></tr>
-          <tr><td><span class="dot dot-red"></span>Missing</td><td>Expected position, no plant — attrition gap, replanting trigger</td></tr>
+          <tr><th data-i18n="s3-th1">Class</th><th data-i18n="s3-th2">What It Means</th></tr>
+          <tr><td data-i18n="s3-td1c"><span class="dot dot-green"></span>Viable</td><td data-i18n="s3-td1m">Mature, healthy plant — counts toward CRT passport balance</td></tr>
+          <tr><td data-i18n="s3-td2c"><span class="dot dot-blue"></span>Hijuelo</td><td data-i18n="s3-td2m">Offshoot / pup — registered as a future CRT asset</td></tr>
+          <tr><td data-i18n="s3-td3c"><span class="dot dot-pink"></span>Small</td><td data-i18n="s3-td3m">Sub-mature — growing, not yet in pheromone season</td></tr>
+          <tr><td data-i18n="s3-td4c"><span class="dot dot-yellow"></span>Diseased</td><td data-i18n="s3-td4m">Symptomatic — flagged for phytosanitary follow-up</td></tr>
+          <tr><td data-i18n="s3-td5c"><span class="dot dot-red"></span>Missing</td><td data-i18n="s3-td5m">Expected position, no plant — attrition gap, replanting trigger</td></tr>
         </table>
-        <div class="callout" style="margin-top:10px;">No competitor can simultaneously count Viable piñas, register hijuelos as CRT assets, flag disease, and <strong>geo-locate every missing plant</strong> — in one flight.</div>
+        <div class="callout" style="margin-top:10px;" data-i18n="s3-callout">No competitor can simultaneously count Viable piñas, register hijuelos as CRT assets, flag disease, and <strong>geo-locate every missing plant</strong> — in one flight.</div>
       </div>
     </div>
     <div class="col-visual"><img src="assets/map2_classified.jpg" alt="Full field plant classification"></div>
@@ -153,20 +159,20 @@
 <!-- SLIDE 4: THE FIELD EVIDENCE -->
 <section>
 <div class="slide-inner glow-orb">
-  <div class="slide-tag">Live Platform Evidence · Field 5345</div>
-  <div class="slide-h1">Real Field. Real Data. 12,869 Plants Classified in One Flight.</div>
+  <div class="slide-tag" data-i18n="s4-tag">Live Platform Evidence · Field 5345</div>
+  <div class="slide-h1" data-i18n="s4-h1">Real Field. Real Data. 12,869 Plants Classified in One Flight.</div>
   <div class="slide-rule"></div>
   <div class="stats-row">
-    <div class="stat-card stat-green"><div class="stat-num">9,156</div><div class="stat-lbl">Viable<br>Piñas</div></div>
-    <div class="stat-card stat-blue"><div class="stat-num">2,378</div><div class="stat-lbl">Hijuelo<br>(CRT Asset)</div></div>
-    <div class="stat-card stat-pink"><div class="stat-num">643</div><div class="stat-lbl">Small<br>Plants</div></div>
-    <div class="stat-card stat-amber"><div class="stat-num">409</div><div class="stat-lbl">Diseased<br>Flagged</div></div>
-    <div class="stat-card stat-red"><div class="stat-num">286</div><div class="stat-lbl">Missing<br>Gaps</div></div>
+    <div class="stat-card stat-green"><div class="stat-num">9,156</div><div class="stat-lbl" data-i18n="s4-s1">Viable<br>Piñas</div></div>
+    <div class="stat-card stat-blue"><div class="stat-num">2,378</div><div class="stat-lbl" data-i18n="s4-s2">Hijuelo<br>(CRT Asset)</div></div>
+    <div class="stat-card stat-pink"><div class="stat-num">643</div><div class="stat-lbl" data-i18n="s4-s3">Small<br>Plants</div></div>
+    <div class="stat-card stat-amber"><div class="stat-num">409</div><div class="stat-lbl" data-i18n="s4-s4">Diseased<br>Flagged</div></div>
+    <div class="stat-card stat-red"><div class="stat-num">286</div><div class="stat-lbl" data-i18n="s4-s5">Missing<br>Gaps</div></div>
   </div>
   <div class="three-col" style="margin-top:18px;">
-    <div class="img-card"><img src="assets/map1_field.jpg" alt="Clean orthomosaic"><div class="img-card-label">01 · Clean Orthomosaic</div></div>
-    <div class="img-card"><img src="assets/map2_classified.jpg" alt="All plants classified"><div class="img-card-label">02 · All 12,869 Plants Classified</div></div>
-    <div class="img-card"><img src="assets/map3_closeup.jpg" alt="Plant-level closeup"><div class="img-card-label">03 · Plant-Level Detection</div></div>
+    <div class="img-card"><img src="assets/map1_field.jpg" alt="Clean orthomosaic"><div class="img-card-label" data-i18n="s4-l1">01 · Clean Orthomosaic</div></div>
+    <div class="img-card"><img src="assets/map2_classified.jpg" alt="All plants classified"><div class="img-card-label" data-i18n="s4-l2">02 · All 12,869 Plants Classified</div></div>
+    <div class="img-card"><img src="assets/map3_closeup.jpg" alt="Plant-level closeup"><div class="img-card-label" data-i18n="s4-l3">03 · Plant-Level Detection</div></div>
   </div>
   <div class="slide-footer"><span class="slide-footer-logo">FarmAgent</span><span>FruitScout &nbsp;·&nbsp; 4 / 9</span></div>
 </div></section>
@@ -176,22 +182,22 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">Stage 1 &amp; 2 · Registration &amp; Annual CRT Update</div>
-      <div class="slide-h1">Verified Counts Replace Estimated Self-Reports.</div>
+      <div class="slide-tag" data-i18n="s5-tag">Stage 1 &amp; 2 · Registration &amp; Annual CRT Update</div>
+      <div class="slide-h1" data-i18n="s5-h1">Verified Counts Replace Estimated Self-Reports.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">Year 0 — Registro de Predios</p>
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" data-i18n="s5-sub1">Year 0 — Registro de Predios</p>
         <ul class="bullet-list">
-          <li>Drone generates <strong>CRT-grade GPS polygon</strong> (±30cm accuracy) automatically</li>
-          <li>Visual Inventory counts and classifies <strong>every hijuelo</strong> at planting — not estimated by row</li>
-          <li>Auto-generated Registro PDF with GPS KML, plant count by class, and photo proof</li>
+          <li data-i18n="s5-li1">Drone generates <strong>CRT-grade GPS polygon</strong> (±30cm accuracy) automatically</li>
+          <li data-i18n="s5-li2">Visual Inventory counts and classifies <strong>every hijuelo</strong> at planting — not estimated by row</li>
+          <li data-i18n="s5-li3">Auto-generated Registro PDF with GPS KML, plant count by class, and photo proof</li>
         </ul>
-        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">Years 1–6 — Annual SIGA Update (Jan–Jul Window)</p>
+        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;" data-i18n="s5-sub2">Years 1–6 — Annual SIGA Update (Jan–Jul Window)</p>
         <ul class="bullet-list">
-          <li><strong>Mortality Bleed Rate</strong> — exact % lost since prior year, by class (Diseased vs. Missing)</li>
-          <li>Hijuelos that matured to Viable are <strong>auto-promoted</strong> in the CRT record</li>
-          <li>Attrition attributed to phytosanitary cause — defensible explanation for every lost plant</li>
-          <li>SIGA-ready annual report auto-generated; no manual re-entry</li>
+          <li data-i18n="s5-li4"><strong>Mortality Bleed Rate</strong> — exact % lost since prior year, by class (Diseased vs. Missing)</li>
+          <li data-i18n="s5-li5">Hijuelos that matured to Viable are <strong>auto-promoted</strong> in the CRT record</li>
+          <li data-i18n="s5-li6">Attrition attributed to phytosanitary cause — defensible explanation for every lost plant</li>
+          <li data-i18n="s5-li7">SIGA-ready annual report auto-generated; no manual re-entry</li>
         </ul>
       </div>
     </div>
@@ -205,24 +211,24 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">Stage 2b · Replanting Management (Resiembra)</div>
-      <div class="slide-h1">Every Red Dot is a GPS Waypoint for the Replanting Crew.</div>
+      <div class="slide-tag" data-i18n="s6-tag">Stage 2b · Replanting Management (Resiembra)</div>
+      <div class="slide-h1" data-i18n="s6-h1">Every Red Dot is a GPS Waypoint for the Replanting Crew.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p>The Visual Inventory doesn't just report gaps — it triggers action.</p>
+        <p data-i18n="s6-p1">The Visual Inventory doesn't just report gaps — it triggers action.</p>
         <div class="gap-row">
           <div class="gap-icon">📅</div>
-          <div class="gap-txt"><strong>Year 1–2 gap = recoverable.</strong> A replacement hijuelo planted now matures with the cohort and is registered to the SIGA balance.</div>
+          <div class="gap-txt" data-i18n="s6-g1"><strong>Year 1–2 gap = recoverable.</strong> A replacement hijuelo planted now matures with the cohort and is registered to the SIGA balance.</div>
         </div>
         <div class="gap-row" style="border-color:var(--red);">
           <div class="gap-icon">🚫</div>
-          <div class="gap-txt"><strong>Year 4–5 gap = permanent SIGA shortfall.</strong> Replacement won't mature in time. Passports denied at harvest.</div>
+          <div class="gap-txt" data-i18n="s6-g2"><strong>Year 4–5 gap = permanent SIGA shortfall.</strong> Replacement won't mature in time. Passports denied at harvest.</div>
         </div>
         <ul class="bullet-list" style="margin-top:12px;">
-          <li><strong>GPS Gap Map</strong> — 🔴 Missing dots converted to replanting waypoints. Crew navigated to exact row and position.</li>
-          <li><strong>Auto-trigger at &gt;3% density</strong> (blocks ≤ Year 2) — replanting work order fires without manual decision</li>
-          <li><strong>Year window alert</strong> — flags when replanting is too late for the cohort; triggers SIGA amendment instead</li>
-          <li><strong>60-day survival tracking</strong> + SIGA balance update on success</li>
+          <li data-i18n="s6-li1"><strong>GPS Gap Map</strong> — 🔴 Missing dots converted to replanting waypoints. Crew navigated to exact row and position.</li>
+          <li data-i18n="s6-li2"><strong>Auto-trigger at &gt;3% density</strong> (blocks ≤ Year 2) — replanting work order fires without manual decision</li>
+          <li data-i18n="s6-li3"><strong>Year window alert</strong> — flags when replanting is too late for the cohort; triggers SIGA amendment instead</li>
+          <li data-i18n="s6-li4"><strong>60-day survival tracking</strong> + SIGA balance update on success</li>
         </ul>
       </div>
     </div>
@@ -236,21 +242,21 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">Stages 3–5 · Inspector Readiness &amp; Harvest Passport</div>
-      <div class="slide-h1">Zero-Stress Inspector Arrival. Zero Passport Surprises.</div>
+      <div class="slide-tag" data-i18n="s7-tag">Stages 3–5 · Inspector Readiness &amp; Harvest Passport</div>
+      <div class="slide-h1" data-i18n="s7-h1">Zero-Stress Inspector Arrival. Zero Passport Surprises.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;">CRT Inspector Arrives — Unannounced</p>
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;" data-i18n="s7-sub1">CRT Inspector Arrives — Unannounced</p>
         <ul class="bullet-list">
-          <li><strong>Live SIGA export</strong> — inspector-ready PDF in one tap: YOLO count, phytosanitary logs, GPS polygon, drone imagery</li>
-          <li><strong>Read-only inspector portal</strong> — shared as a link; full year of data on their tablet, no paper</li>
-          <li><strong>Discrepancy alert</strong> — 60 days before annual window if declared count vs. YOLO count diverge &gt;3%</li>
+          <li data-i18n="s7-li1"><strong>Live SIGA export</strong> — inspector-ready PDF in one tap: YOLO count, phytosanitary logs, GPS polygon, drone imagery</li>
+          <li data-i18n="s7-li2"><strong>Read-only inspector portal</strong> — shared as a link; full year of data on their tablet, no paper</li>
+          <li data-i18n="s7-li3"><strong>Discrepancy alert</strong> — 60 days before annual window if declared count vs. YOLO count diverge &gt;3%</li>
         </ul>
-        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">Year 5–6 — Harvest Readiness</p>
+        <p style="font-size:12px;color:var(--amber);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;" data-i18n="s7-sub2">Year 5–6 — Harvest Readiness</p>
         <ul class="bullet-list">
-          <li><strong>Maturity scan</strong> — NDVI + plant size to identify peak-ripeness blocks</li>
-          <li><strong>Passport Volume Estimator</strong> — YOLO count of harvestable plants cross-checked vs. SIGA balance</li>
-          <li><strong>Pre-harvest shortfall alert</strong> — flags if tonnage estimate exceeds SIGA balance before season starts</li>
+          <li data-i18n="s7-li4"><strong>Maturity scan</strong> — NDVI + plant size to identify peak-ripeness blocks</li>
+          <li data-i18n="s7-li5"><strong>Passport Volume Estimator</strong> — YOLO count of harvestable plants cross-checked vs. SIGA balance</li>
+          <li data-i18n="s7-li6"><strong>Pre-harvest shortfall alert</strong> — flags if tonnage estimate exceeds SIGA balance before season starts</li>
         </ul>
       </div>
     </div>
@@ -264,19 +270,19 @@
 <div class="slide-inner glow-orb">
   <div class="two-col">
     <div class="col-text">
-      <div class="slide-tag">Stage 6 · Field Passport Verification (Gate / Loadout)</div>
-      <div class="slide-h1">Replacing WhatsApp with a Structured Chain of Custody.</div>
+      <div class="slide-tag" data-i18n="s8-tag">Stage 6 · Field Passport Verification (Gate / Loadout)</div>
+      <div class="slide-h1" data-i18n="s8-h1">Replacing WhatsApp with a Structured Chain of Custody.</div>
       <div class="slide-rule"></div>
       <div class="slide-body">
-        <p>Today: three photos sent via WhatsApp to HQ. Image buried in chat. No machine-readable record. No cross-check against the CRT folio.</p>
-        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;">FarmAgent Mobile Capture Flow</p>
+        <p data-i18n="s8-p1">Today: three photos sent via WhatsApp to HQ. Image buried in chat. No machine-readable record. No cross-check against the CRT folio.</p>
+        <p style="font-size:12px;color:var(--green);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:10px 0 6px;" data-i18n="s8-sub1">FarmAgent Mobile Capture Flow</p>
         <ul class="bullet-list">
-          <li><strong>License Plate OCR</strong> — plate extracted and cross-checked against authorized carrier list. Pass/Fail in real time.</li>
-          <li><strong>Seal / Lock CV</strong> — seal presence verified, tampering checked, seal number extracted via OCR.</li>
-          <li><strong>Guía de Traslado OCR</strong> — Folio Number, polygon ID, tonnage, and distillery destination extracted and auto-validated against CRT record.</li>
-          <li><strong>Structured digital record</strong> — timestamped, GPS-tagged, push notification to HQ with pass/fail summary.</li>
+          <li data-i18n="s8-li1"><strong>License Plate OCR</strong> — plate extracted and cross-checked against authorized carrier list. Pass/Fail in real time.</li>
+          <li data-i18n="s8-li2"><strong>Seal / Lock CV</strong> — seal presence verified, tampering checked, seal number extracted via OCR.</li>
+          <li data-i18n="s8-li3"><strong>Guía de Traslado OCR</strong> — Folio Number, polygon ID, tonnage, and distillery destination extracted and auto-validated against CRT record.</li>
+          <li data-i18n="s8-li4"><strong>Structured digital record</strong> — timestamped, GPS-tagged, push notification to HQ with pass/fail summary.</li>
         </ul>
-        <div class="callout"><strong>CRT significance:</strong> Every Guía has a unique folio consumed from the SIGA balance. FarmAgent makes an unmatched truck departure impossible to miss.</div>
+        <div class="callout" data-i18n="s8-callout"><strong>CRT significance:</strong> Every Guía has a unique folio consumed from the SIGA balance. FarmAgent makes an unmatched truck departure impossible to miss.</div>
       </div>
     </div>
     <div class="col-visual"><img src="assets/gate_loadout_ocr.png?v=5" alt="Gate loadout OCR verification"></div>
@@ -290,11 +296,11 @@
   <div class="cover-bg" style="background-image:url('assets/closing.png')"></div>
   <div style="position:absolute;inset:0;background:rgba(8,14,20,.80);"></div>
   <div style="position:relative;z-index:2;padding:48px;max-width:760px;">
-    <div style="font-family:var(--ftitle);font-weight:200;font-size:52px;color:var(--tp);line-height:1.25;margin-bottom:18px;">
+    <div style="font-family:var(--ftitle);font-weight:200;font-size:52px;color:var(--tp);line-height:1.25;margin-bottom:18px;" data-i18n="s9-h1">
       The chain is verified,<br>defensible, and <em style="color:var(--green);font-style:normal;">unbroken.</em>
     </div>
     <div class="cover-rule" style="margin:0 auto 24px;"></div>
-    <p style="font-family:var(--fbody);font-size:16px;color:var(--ts);line-height:1.7;max-width:580px;margin:0 auto;">
+    <p style="font-family:var(--fbody);font-size:16px;color:var(--ts);line-height:1.7;max-width:580px;margin:0 auto;" data-i18n="s9-p1">
       Every agave grower in the Tequila DOT is legally required to track their plants from the day they go in the ground to the day they leave in a distillery truck. Most do it on paper and hope the inspector agrees.<br><br>
       <strong style="color:var(--tp);">FarmAgent makes the CRT's own database agree with your field — permanently.</strong>
     </p>
@@ -304,6 +310,7 @@
 
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
 <script>
 Reveal.initialize({
@@ -311,6 +318,163 @@ Reveal.initialize({
   backgroundTransition: 'fade', progress: true, controls: true,
   slideNumber: false, center: false, disableLayout: true, margin: 0,
 });
+
+const i18n = {
+  en: {
+    "hero-tag": "FarmAgent · Agave Edition &nbsp;·&nbsp; CRT Compliance",
+    "hero-h1": "Inventory<br>Automation<br><em style='color:var(--green);font-style:normal;'>for the CRT.</em>",
+    "hero-sub": "How FarmAgent closes every gap in the NOM-006-SCFI-2012 traceability chain — from hijuelo registration to field passport verification — with verified AI, not paper estimates.",
+    "footer-conf": "FruitScout · Confidential · For CRT Review",
+    "s2-tag": "The Problem",
+    "s2-h1": "A 7-Year Gap Between the Paper Ledger and the Field.",
+    "s2-p1": "The CRT's inventory framework demands a closed traceability chain from planting to passport. Today, that chain is built on estimation.",
+    "s2-li1": "<strong>Year 0 Registration</strong> — Growers estimate hijuelo count by row. Errors compound for 7 years.",
+    "s2-li2": "<strong>Annual Updates (Jan–Jul)</strong> — Scouts walk a sample path and extrapolate. CRT accepts the self-report.",
+    "s2-li3": "<strong>Year 6–7 Harvest</strong> — If SIGA balance diverges from field reality, passports are denied on mature piñas worth <strong>$1,500–$3,500/ton</strong>.",
+    "s2-li4": "<strong>Inspector Arrival</strong> — Paper files, disconnected records, no photo proof.",
+    "s2-callout": "<strong>The core risk:</strong> A grower who loses 5% of Year 1 plants and doesn't detect it will arrive at harvest 7 years later with a SIGA shortfall they cannot explain — and mature agave they cannot sell.",
+    "s3-tag": "Core Differentiator · Advanced Visual Inventory",
+    "s3-h1": "One Drone Flight. Every Plant. Classified.",
+    "s3-p1": "FruitScout is the only platform that can look at an agave field from a drone and tell you — plant by plant — exactly what you have.",
+    "s3-th1": "Class", "s3-th2": "What It Means",
+    "s3-td1c": "<span class='dot dot-green'></span>Viable", "s3-td1m": "Mature, healthy plant — counts toward CRT passport balance",
+    "s3-td2c": "<span class='dot dot-blue'></span>Hijuelo", "s3-td2m": "Offshoot / pup — registered as a future CRT asset",
+    "s3-td3c": "<span class='dot dot-pink'></span>Small", "s3-td3m": "Sub-mature — growing, not yet in pheromone season",
+    "s3-td4c": "<span class='dot dot-yellow'></span>Diseased", "s3-td4m": "Symptomatic — flagged for phytosanitary follow-up",
+    "s3-td5c": "<span class='dot dot-red'></span>Missing", "s3-td5m": "Expected position, no plant — attrition gap, replanting trigger",
+    "s3-callout": "No competitor can simultaneously count Viable piñas, register hijuelos as CRT assets, flag disease, and <strong>geo-locate every missing plant</strong> — in one flight.",
+    "s4-tag": "Live Platform Evidence · Field 5345",
+    "s4-h1": "Real Field. Real Data. 12,869 Plants Classified in One Flight.",
+    "s4-s1": "Viable<br>Piñas", "s4-s2": "Hijuelo<br>(CRT Asset)", "s4-s3": "Small<br>Plants", "s4-s4": "Diseased<br>Flagged", "s4-s5": "Missing<br>Gaps",
+    "s4-l1": "01 · Clean Orthomosaic", "s4-l2": "02 · All 12,869 Plants Classified", "s4-l3": "03 · Plant-Level Detection",
+    "s5-tag": "Stage 1 & 2 · Registration & Annual CRT Update",
+    "s5-h1": "Verified Counts Replace Estimated Self-Reports.",
+    "s5-sub1": "Year 0 — Registro de Predios",
+    "s5-li1": "Drone generates <strong>CRT-grade GPS polygon</strong> (±30cm accuracy) automatically",
+    "s5-li2": "Visual Inventory counts and classifies <strong>every hijuelo</strong> at planting — not estimated by row",
+    "s5-li3": "Auto-generated Registro PDF with GPS KML, plant count by class, and photo proof",
+    "s5-sub2": "Years 1–6 — Annual SIGA Update (Jan–Jul Window)",
+    "s5-li4": "<strong>Mortality Bleed Rate</strong> — exact % lost since prior year, by class (Diseased vs. Missing)",
+    "s5-li5": "Hijuelos that matured to Viable are <strong>auto-promoted</strong> in the CRT record",
+    "s5-li6": "Attrition attributed to phytosanitary cause — defensible explanation for every lost plant",
+    "s5-li7": "SIGA-ready annual report auto-generated; no manual re-entry",
+    "s6-tag": "Stage 2b · Replanting Management (Resiembra)",
+    "s6-h1": "Every Red Dot is a GPS Waypoint for the Replanting Crew.",
+    "s6-p1": "The Visual Inventory doesn't just report gaps — it triggers action.",
+    "s6-g1": "<strong>Year 1–2 gap = recoverable.</strong> A replacement hijuelo planted now matures with the cohort and is registered to the SIGA balance.",
+    "s6-g2": "<strong>Year 4–5 gap = permanent SIGA shortfall.</strong> Replacement won't mature in time. Passports denied at harvest.",
+    "s6-li1": "<strong>GPS Gap Map</strong> — 🔴 Missing dots converted to replanting waypoints. Crew navigated to exact row and position.",
+    "s6-li2": "<strong>Auto-trigger at &gt;3% density</strong> (blocks ≤ Year 2) — replanting work order fires without manual decision",
+    "s6-li3": "<strong>Year window alert</strong> — flags when replanting is too late for the cohort; triggers SIGA amendment instead",
+    "s6-li4": "<strong>60-day survival tracking</strong> + SIGA balance update on success",
+    "s7-tag": "Stages 3–5 · Inspector Readiness & Harvest Passport",
+    "s7-h1": "Zero-Stress Inspector Arrival. Zero Passport Surprises.",
+    "s7-sub1": "CRT Inspector Arrives — Unannounced",
+    "s7-li1": "<strong>Live SIGA export</strong> — inspector-ready PDF in one tap: YOLO count, phytosanitary logs, GPS polygon, drone imagery",
+    "s7-li2": "<strong>Read-only inspector portal</strong> — shared as a link; full year of data on their tablet, no paper",
+    "s7-li3": "<strong>Discrepancy alert</strong> — 60 days before annual window if declared count vs. YOLO count diverge &gt;3%",
+    "s7-sub2": "Year 5–6 — Harvest Readiness",
+    "s7-li4": "<strong>Maturity scan</strong> — NDVI + plant size to identify peak-ripeness blocks",
+    "s7-li5": "<strong>Passport Volume Estimator</strong> — YOLO count of harvestable plants cross-checked vs. SIGA balance",
+    "s7-li6": "<strong>Pre-harvest shortfall alert</strong> — flags if tonnage estimate exceeds SIGA balance before season starts",
+    "s8-tag": "Stage 6 · Field Passport Verification (Gate / Loadout)",
+    "s8-h1": "Replacing WhatsApp with a Structured Chain of Custody.",
+    "s8-p1": "Today: three photos sent via WhatsApp to HQ. Image buried in chat. No machine-readable record. No cross-check against the CRT folio.",
+    "s8-sub1": "FarmAgent Mobile Capture Flow",
+    "s8-li1": "<strong>License Plate OCR</strong> — plate extracted and cross-checked against authorized carrier list. Pass/Fail in real time.",
+    "s8-li2": "<strong>Seal / Lock CV</strong> — seal presence verified, tampering checked, seal number extracted via OCR.",
+    "s8-li3": "<strong>Guía de Traslado OCR</strong> — Folio Number, polygon ID, tonnage, and distillery destination extracted and auto-validated against CRT record.",
+    "s8-li4": "<strong>Structured digital record</strong> — timestamped, GPS-tagged, push notification to HQ with pass/fail summary.",
+    "s8-callout": "<strong>CRT significance:</strong> Every Guía has a unique folio consumed from the SIGA balance. FarmAgent makes an unmatched truck departure impossible to miss.",
+    "s9-h1": "The chain is verified,<br>defensible, and <em style='color:var(--green);font-style:normal;'>unbroken.</em>",
+    "s9-p1": "Every agave grower in the Tequila DOT is legally required to track their plants from the day they go in the ground to the day they leave in a distillery truck. Most do it on paper and hope the inspector agrees.<br><br><strong style='color:var(--tp);'>FarmAgent makes the CRT's own database agree with your field — permanently.</strong>"
+  },
+  es: {
+    "hero-tag": "FarmAgent · Edición Agave &nbsp;·&nbsp; Cumplimiento CRT",
+    "hero-h1": "Automatización<br>de Inventario<br><em style='color:var(--green);font-style:normal;'>para el CRT.</em>",
+    "hero-sub": "Cómo FarmAgent cierra cada brecha en la cadena de trazabilidad de la NOM-006-SCFI-2012 — desde el registro de hijuelos hasta la verificación de la guía de traslado — con IA verificada, no estimaciones en papel.",
+    "footer-conf": "FruitScout · Confidencial · Para Revisión del CRT",
+    "s2-tag": "El Problema",
+    "s2-h1": "Una Brecha de 7 Años Entre el Registro en Papel y el Campo.",
+    "s2-p1": "El marco de inventario del CRT exige una cadena de trazabilidad cerrada desde la plantación hasta la guía de traslado. Hoy, esa cadena se basa en estimaciones.",
+    "s2-li1": "<strong>Año 0 Registro</strong> — Los sembradores estiman el conteo de hijuelos por hilera. Los errores se acumulan por 7 años.",
+    "s2-li2": "<strong>Actualizaciones Anuales (Ene-Jul)</strong> — Los encuestadores recorren una ruta de muestra y extrapolan. El CRT acepta el informe propio.",
+    "s2-li3": "<strong>Cosecha Año 6-7</strong> — Si el saldo de SIGA difiere de la realidad del campo, se niegan las guías de traslado para piñas maduras que valen <strong>$1,500-$3,500/tonelada</strong>.",
+    "s2-li4": "<strong>Llegada del Inspector</strong> — Archivos de papel, registros desconectados, sin pruebas fotográficas.",
+    "s2-callout": "<strong>El riesgo central:</strong> Un sembrador que pierde el 5% de las plantas en el Año 1 y no lo detecta, llegará a la cosecha 7 años después con un déficit en SIGA que no puede explicar — y agave maduro que no puede vender.",
+    "s3-tag": "Diferenciador Central · Inventario Visual Avanzado",
+    "s3-h1": "Un Vuelo de Dron. Cada Planta. Clasificada.",
+    "s3-p1": "FruitScout es la única plataforma que puede observar un campo de agave desde un dron y decirte — planta por planta — exactamente lo que tienes.",
+    "s3-th1": "Clase", "s3-th2": "Lo Que Significa",
+    "s3-td1c": "<span class='dot dot-green'></span>Viable", "s3-td1m": "Planta madura y sana — cuenta para el saldo de guías de traslado del CRT",
+    "s3-td2c": "<span class='dot dot-blue'></span>Hijuelo", "s3-td2m": "Retoño / pup — registrado como activo futuro del CRT",
+    "s3-td3c": "<span class='dot dot-pink'></span>Pequeña", "s3-td3m": "Sub-madura — en crecimiento, aún no en temporada de feromonas",
+    "s3-td4c": "<span class='dot dot-yellow'></span>Enferma", "s3-td4m": "Sintomática — marcada para seguimiento fitosanitario",
+    "s3-td5c": "<span class='dot dot-red'></span>Faltante", "s3-td5m": "Posición esperada, sin planta — brecha de desgaste, disparador de replantación",
+    "s3-callout": "Ningún competidor puede contar simultáneamente piñas viables, registrar hijuelos como activos del CRT, señalar enfermedades y <strong>gelocalizar cada planta faltante</strong> — en un solo vuelo.",
+    "s4-tag": "Evidencia de Plataforma en Vivo · Campo 5345",
+    "s4-h1": "Campo Real. Datos Reales. 12,869 Plantas Clasificadas en un Vuelo.",
+    "s4-s1": "Piñas<br>Viables", "s4-s2": "Hijuelo<br>(Activo CRT)", "s4-s3": "Plantas<br>Pequeñas", "s4-s4": "Enfermedades<br>Marcadas", "s4-s5": "Brechas<br>Faltantes",
+    "s4-l1": "01 · Ortomosaico Limpio", "s4-l2": "02 · Las 12,869 Plantas Clasificadas", "s4-l3": "03 · Detección Nivel-Planta",
+    "s5-tag": "Etapa 1 y 2 · Registro y Actualización Anual CRT",
+    "s5-h1": "Conteos Verificados Reemplazan Reportes Estimados.",
+    "s5-sub1": "Año 0 — Registro de Predios",
+    "s5-li1": "El dron genera automáticamente <strong>polígono GPS con precisión CRT</strong> (±30cm)",
+    "s5-li2": "Inventario Visual cuenta y clasifica <strong>cada hijuelo</strong> en la siembra — no estimado por surco",
+    "s5-li3": "PDF de Registro auto-generado con KML GPS, conteo por clase y prueba fotográfica",
+    "s5-sub2": "Años 1-6 — Actualización SIGA Anual (Ventana Ene-Jul)",
+    "s5-li4": "<strong>Tasa de Sangrado por Mortalidad</strong> — % exacto perdido desde el año previo por clase (Enfermo vs. Faltante)",
+    "s5-li5": "Los hijuelos madurando a Viables son <strong>auto-promovidos</strong> en el registro CRT",
+    "s5-li6": "Merma atribuida a causa fitosanitaria — justificación defendible para cada planta",
+    "s5-li7": "Generación de reporte manual auto-calculada para vaciado al SIGA; sin re-conteo",
+    "s6-tag": "Etapa 2b · Manejo de Resiembra",
+    "s6-h1": "Cada Punto Rojo es una Coordenada para la Cuadrilla.",
+    "s6-p1": "El Inventario Visual no solo reporta errores — desencadena acciones.",
+    "s6-g1": "<strong>Pérdida Año 1–2 = recuperable.</strong> Un hijuelo repuesto ahora madurará con la cosecha.",
+    "s6-g2": "<strong>Pérdida Año 4–5 = caída de producción final.</strong> La reposición no estará a tiempo. Cero pasaportes al corte.",
+    "s6-li1": "<strong>Mapa GPS de Faltantes</strong> — 🔴 Puntos perdidos se envían a la cuadrilla como puntos de navegación exactos.",
+    "s6-li2": "<strong>Alerta de Umbral de >3%</strong> — despliega órden de replanteo y presupuesto automático.",
+    "s6-li3": "<strong>Advertencia de Temporada</strong> — alerta que informa sobre cierre de ventanas recuperables.",
+    "s6-li4": "<strong>Monitoreo de Sobrevivencia 60-días</strong> — actualizando el SIGA a verde tras arraigo.",
+    "s7-tag": "Etapas 3–5 · Preparación Inspectores y Cosecha",
+    "s7-h1": "Cero Estrés, Cero Sorpresas con el Auditor.",
+    "s7-sub1": "Apertura Auditor CRT — Sin Aviso Previo",
+    "s7-li1": "<strong>Exportador Inmediato SIGA</strong> — PDF generado con IA cruzando bitácoras y fotos instantáneamente.",
+    "s7-li2": "<strong>Portal Inspector Lectura-Solo</strong> — Se envía link y QR para su tablet — cero hojas para revisión física.",
+    "s7-li3": "<strong>Alerta Correlativa Fito-Conteos</strong> — Informa si el padrón difiere >3% previniendo castigos al Año 2.",
+    "s7-sub2": "Año 5–6 — Maduración y Jima",
+    "s7-li4": "<strong>Escaneo Brix Analítico</strong> — Identifica qué cuadrantes específicos extraer para máxima destilación.",
+    "s7-li5": "<strong>Estimador Tonalaje/Siga</strong> — Alertas pre-Jima midiendo peso en vivo contra saldo restado en el padrón CRT.",
+    "s7-li6": "<strong>Corte por Bloques Predictivo</strong> — Reducir pérdidas y prevenir maduración sobre-retrasada en el lote.",
+    "s8-tag": "Etapa 6 · Pasaporte Verificación Despacho (Carga/Llenado)",
+    "s8-h1": "Removiendo el WhatsApp: Cadena de Custodia Formalizada.",
+    "s8-p1": "Actualmente: Fotos enviadas en WhatsApp. Sin rastreabilidad de las imágenes. Cero cruce con los datos verdaderos del CRT.",
+    "s8-sub1": "Flujo de Captura Móvil FarmAgent",
+    "s8-li1": "<strong>OCR Placas de Vehículos</strong> — Capturada cruzándola contra la base transportista autorizada. Aprobación en segundos.",
+    "s8-li2": "<strong>Visión por Candado & Sello Central</strong> — Verifica el número correcto para prevenir robos / manipulación física.",
+    "s8-li3": "<strong>OCR Guía de Traslado</strong> — Autentifica Polígono y Destilería evitando contrabando y clonaciones ilegales en la ruta.",
+    "s8-li4": "<strong>Almacenamiento Estructurado Indeleble</strong> — La nube resguarda al agricultor por GPS con evidencia legal del despacho.",
+    "s8-callout": "<strong>Importancia del CRT:</strong> Cada Guía está amarrada al saldo SIGA total. Permitir robos invisibles daña tanto el negocio principal como la fábrica final.",
+    "s9-h1": "La cadena se encuentra verificada,<br>trazable e <em style='color:var(--green);font-style:normal;'>inquebrantable.</em>",
+    "s9-p1": "Cada agavero legalizado cuenta con obligación a un seguimiento absoluto desde inicio a salida industrial en camión. FarmAgent destierra las estimaciones manuales.<br><br><strong style='color:var(--tp);'>FarmAgent fuerza al campo y al Sistema Institucional Computarizado a empatar — a través de exactitud satelital constante.</strong>"
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if(i18n[lang][k] !== undefined) el.innerHTML = i18n[lang][k];
+  });
+  document.getElementById('btn-en').className = lang === 'en' ? 'active' : 'inactive';
+  document.getElementById('btn-es').className = lang === 'es' ? 'active' : 'inactive';
+  document.documentElement.lang = lang;
+  localStorage.setItem('fa-deck-lang', lang);
+}
+
+// init
+const saved = localStorage.getItem('fa-deck-lang') || 'en';
+if(saved === 'es') setLang('es');
+
 </script>
 </body>
 </html>
